@@ -25,11 +25,11 @@ const CatagoryBox = ({
     }
     const updatedQuery: any = {
       ...currentQuery,
-      catagory: label,
+      category: label,
     };
 
-    if (params?.get("catagory") === label) {
-      delete updatedQuery.catagory;
+    if (params?.get("category") === label) {
+      delete updatedQuery.category;
     }
 
     const url = qs.stringifyUrl(

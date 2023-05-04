@@ -65,7 +65,7 @@ const ListingClient = ({
       .then(() => {
         toast.success("Listing reserved!");
         setDateRange(initialDateRange);
-        router.refresh();
+        router.push("/trips");
       })
       .catch(() => {
         toast.error("Something went wrong");
@@ -89,7 +89,7 @@ const ListingClient = ({
     }
   }, [dateRange, listing.price]);
 
-  const catagory = React.useMemo(() => {
+  const category = React.useMemo(() => {
     return catagories.find((item) => item.label === listing.category);
   }, [listing.category]);
 
@@ -107,7 +107,7 @@ const ListingClient = ({
           <div className="grid grid-col-1 md:grid-cols-7 md:gap-10 mt-6">
             <ListingInfo
               user={listing.user}
-              category={catagory}
+              category={category}
               description={listing.description}
               roomCount={listing.roomCount}
               guestCount={listing.guestCount}

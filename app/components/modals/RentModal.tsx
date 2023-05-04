@@ -50,7 +50,7 @@ const RentModal = () => {
     },
   });
 
-  const catagory = watch("category");
+  const category = watch("category");
   const location = watch("location");
   const guestCount = watch("guestCount");
   const bathroomCount = watch("bathroomCount");
@@ -118,14 +118,14 @@ const RentModal = () => {
     <div className="flex flex-col gap-8">
       <Heading
         title="Which of these best describes your place?"
-        subtitle="Pick a catagory"
+        subtitle="Pick a Category"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
         {catagories.map((item) => (
           <div className="col-span-1" key={item.label}>
             <CatagoryInput
               onClick={(category) => setCustomValue("category", category)}
-              selected={catagory === item.label}
+              selected={category === item.label}
               label={item.label}
               icon={item.icon}
             />

@@ -1,13 +1,12 @@
 import { getServerSession } from "next-auth/next";
+import prisma from "@/app/libs/prismadb";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-import prisma from "@/app/libs/prismadb";
-
-const getSession = async () => {
+export const getSession = async () => {
   return await getServerSession(authOptions);
 };
 
-export const getCurrentUser = async () => {
+const getCurrentUser = async () => {
   try {
     const session = await getSession();
     if (!session?.user?.email) {
@@ -30,7 +29,8 @@ export const getCurrentUser = async () => {
       updatedAt: currentUser.updatedAt.toISOString(),
       emailVerified: currentUser.emailVerified?.toISOString() || null,
     };
-  } catch (error) {
+  } catch (error: any) {
     return null;
   }
 };
+export default getCurrentUser;

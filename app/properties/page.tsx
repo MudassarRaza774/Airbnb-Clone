@@ -1,31 +1,26 @@
-import React from "react";
-import { getCurrentUser } from "../actions/getCurrentUser";
-import ClientOnly from "../components/ClientOnly";
-import EmptyState from "../components/EmptyState";
-import { getReservations } from "../actions/getReservations";
-import TripsClient from "./PropertyClient";
-import { getListings } from "../actions/getListings";
-import PropertyClient from "./PropertyClient";
+import EmptyState from "@/app/components/EmptyState";
+import ClientOnly from "@/app/components/ClientOnly";
 
-const page = async () => {
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import getListings from "@/app/actions/getListings";
+
+import PropertiesClient from "./PropertiesClient";
+
+const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return (
-      <ClientOnly>
-        <EmptyState title="Unauthorized" subtitle="Please login" />
-      </ClientOnly>
-    );
+    return <EmptyState title="Unauthorized" subtitle="Please login" />;
   }
 
   const listings = await getListings({ userId: currentUser.id });
 
-  if (!listings.length) {
+  if (listings.length === 0) {
     return (
       <ClientOnly>
         <EmptyState
-          title="No Properties  found"
-          subtitle="Looks like you haven't reserved any trips"
+          title="No properties found"
+          subtitle="Looks like you have no properties."
         />
       </ClientOnly>
     );
@@ -33,9 +28,9 @@ const page = async () => {
 
   return (
     <ClientOnly>
-      <PropertyClient listings={listings} currentUser={currentUser} />
+      <PropertiesClient listings={listings} currentUser={currentUser} />
     </ClientOnly>
   );
 };
 
-export default page;
+export default PropertiesPage;

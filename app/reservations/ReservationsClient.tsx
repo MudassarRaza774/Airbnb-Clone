@@ -6,17 +6,19 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 import { SafeReservation, SafeUser } from "@/app/types";
-
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ListingCard from "@/app/components/listings/ListingCard";
 
-type TripsClientProps = {
+type ReservationsClientProps = {
   reservations: SafeReservation[];
   currentUser?: SafeUser | null;
 };
 
-const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
+const ReservationsClient = ({
+  reservations,
+  currentUser,
+}: ReservationsClientProps) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = React.useState("");
 
@@ -30,8 +32,8 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
           toast.success("Reservation cancelled");
           router.refresh();
         })
-        .catch((error) => {
-          toast.error(error?.response?.data?.error);
+        .catch(() => {
+          toast.error("Something went wrong.");
         })
         .finally(() => {
           setDeletingId("");
@@ -42,10 +44,7 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
 
   return (
     <Container>
-      <Heading
-        title="Trips"
-        subtitle="Where you've been and where you're going"
-      />
+      <Heading title="Reservations" subtitle="Bookings on your properties" />
       <div
         className="
           mt-10
@@ -67,7 +66,7 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
             actionId={reservation.id}
             onAction={onCancel}
             disabled={deletingId === reservation.id}
-            actionLabel="Cancel reservation"
+            actionLabel="Cancel guest reservation"
             currentUser={currentUser}
           />
         ))}
@@ -76,4 +75,4 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
   );
 };
 
-export default TripsClient;
+export default ReservationsClient;

@@ -1,7 +1,6 @@
 "use client";
 
 import { DateRange, Range, RangeKeyDict } from "react-date-range";
-
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
@@ -11,11 +10,7 @@ type DatePickerProps = {
   disabledDates?: Date[];
 };
 
-const DatePicker: React.FC<DatePickerProps> = ({
-  value,
-  onChange,
-  disabledDates,
-}) => {
+const DatePicker = ({ value, onChange, disabledDates }: DatePickerProps) => {
   return (
     <DateRange
       rangeColors={["#262626"]}

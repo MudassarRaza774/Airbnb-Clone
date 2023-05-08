@@ -1,12 +1,9 @@
+import React from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React from "react";
-
 import { toast } from "react-hot-toast";
-
-import { SafeUser } from "@/app/types";
-
 import useLoginModal from "./useLoginModal";
+import type { SafeUser } from "@/app/types";
 
 type IUseFavorite = {
   listingId: string;

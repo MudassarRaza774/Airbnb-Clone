@@ -9,12 +9,12 @@ type CategoryBoxProps = {
   onClick: (value: string) => void;
 };
 
-const CategoryBox: React.FC<CategoryBoxProps> = ({
+const CategoryBox = ({
   icon: Icon,
   label,
   selected,
   onClick,
-}) => {
+}: CategoryBoxProps) => {
   return (
     <div
       onClick={() => onClick(label)}

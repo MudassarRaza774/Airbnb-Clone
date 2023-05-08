@@ -1,19 +1,19 @@
 "use client";
 
-import qs from "query-string";
-import dynamic from "next/dynamic";
 import React from "react";
+import dynamic from "next/dynamic";
+import qs from "query-string";
 import { Range } from "react-date-range";
 import { formatISO } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import useSearchModal from "@/app/hooks/useSearchModal";
-
 import Modal from "./Modal";
 import Calendar from "../inputs/Calendar";
 import Counter from "../inputs/Counter";
-import CountrySelect, { CountrySelectValue } from "../inputs/CountrySelect";
+import CountrySelect from "../inputs/CountrySelect";
 import Heading from "../Heading";
+import useSearchModal from "@/app/hooks/useSearchModal";
+import type { CountrySelectValue } from "../inputs/CountrySelect";
 
 enum STEPS {
   LOCATION = 0,

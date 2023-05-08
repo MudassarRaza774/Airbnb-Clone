@@ -1,14 +1,13 @@
 "use client";
 
-import { toast } from "react-hot-toast";
-import axios from "axios";
 import React from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
-import { SafeReservation, SafeUser } from "@/app/types";
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ListingCard from "@/app/components/listings/ListingCard";
+import type { SafeReservation, SafeUser } from "@/app/types";
 
 type ReservationsClientProps = {
   reservations: SafeReservation[];

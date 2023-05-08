@@ -1,8 +1,8 @@
 "use client";
 
-import { CldUploadWidget } from "next-cloudinary";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import { CldUploadWidget } from "next-cloudinary";
 import { TbPhotoPlus } from "react-icons/tb";
 
 declare global {
@@ -16,7 +16,7 @@ type ImageUploadProps = {
   value: string;
 };
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
+const ImageUpload = ({ onChange, value }: ImageUploadProps) => {
   const handleUpload = React.useCallback(
     (result: any) => {
       onChange(result.info.secure_url);

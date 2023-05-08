@@ -1,10 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import React from "react";
 import { BiSearch } from "react-icons/bi";
 import { differenceInDays } from "date-fns";
-
+import { useSearchParams } from "next/navigation";
 import useSearchModal from "@/app/hooks/useSearchModal";
 import useCountries from "@/app/hooks/useCountries";
 

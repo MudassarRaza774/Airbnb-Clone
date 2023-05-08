@@ -1,16 +1,13 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
-
 import { format } from "date-fns";
-
-import useCountries from "@/app/hooks/useCountries";
-import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
-
 import HeartButton from "../HeartButton";
 import Button from "../Button";
+import useCountries from "@/app/hooks/useCountries";
+import type { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 
 type ListingCardProps = {
   data: SafeListing;

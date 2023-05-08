@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import qs from "query-string";
-import { useRouter, useSearchParams } from "next/navigation";
 import { IconType } from "react-icons";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type CategoryBoxProps = {
   icon: IconType;

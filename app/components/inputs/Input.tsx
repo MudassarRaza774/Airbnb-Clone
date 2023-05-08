@@ -43,6 +43,7 @@ const Input = ({
         {...register(id, { required })}
         placeholder=" "
         type={type}
+        min={type === "number" ? 1 : ""}
         className={`
           peer
           w-full

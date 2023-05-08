@@ -91,8 +91,16 @@ const RentModal = () => {
 
     setIsLoading(true);
 
+    const safeData = {
+      ...data,
+      get price() {
+        const price = parseInt(data.price);
+        return price < 0 ? 1 : price;
+      },
+    };
+
     axios
-      .post("/api/listings", data)
+      .post("/api/listings", safeData)
       .then(() => {
         toast.success("Listing created!");
         router.refresh();

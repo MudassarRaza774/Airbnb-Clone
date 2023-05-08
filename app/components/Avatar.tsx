@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
 
 type AvatarProps = {
@@ -12,7 +12,7 @@ const Avatar = ({ src }: AvatarProps) => {
       className="rounded-full"
       height="30"
       width="30"
-      alt="avatar"
+      alt="Avatar"
       src={src || "/images/placeholder.jpg"}
     />
   );

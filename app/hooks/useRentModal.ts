@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
-interface RentModalStore {
+type RentModalStore = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-}
+};
 
 const useRentModal = create<RentModalStore>((set) => ({
   isOpen: false,

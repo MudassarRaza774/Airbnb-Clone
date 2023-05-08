@@ -1,6 +1,6 @@
 import prisma from "@/app/libs/prismadb";
 
-export type IListingParams = {
+export type IListingsParams = {
   userId?: string;
   guestCount?: number;
   roomCount?: number;
@@ -11,7 +11,7 @@ export type IListingParams = {
   category?: string;
 };
 
-export const getListings = async (params: IListingParams) => {
+const getListings = async (params: IListingsParams) => {
   try {
     const {
       userId,
@@ -76,12 +76,14 @@ export const getListings = async (params: IListingParams) => {
       },
     });
 
-    const safeListing = listings.map((listing) => ({
+    const safeListings = listings.map((listing) => ({
       ...listing,
       createdAt: listing.createdAt.toISOString(),
     }));
-    return safeListing;
+    return safeListings;
   } catch (error: any) {
     throw new Error(error);
   }
 };
+
+export default getListings;

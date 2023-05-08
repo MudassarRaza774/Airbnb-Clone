@@ -1,13 +1,13 @@
 "use client";
-import useCountries from "@/app/hooks/useCountries";
-import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
-import { Reservation } from "@prisma/client";
-import { format } from "date-fns";
+
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import { format } from "date-fns";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
+import useCountries from "@/app/hooks/useCountries";
+import type { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 
 type ListingCardProps = {
   data: SafeListing;
@@ -24,8 +24,8 @@ const ListingCard = ({
   reservation,
   onAction,
   disabled,
-  actionId = "",
   actionLabel,
+  actionId = "",
   currentUser,
 }: ListingCardProps) => {
   const router = useRouter();
@@ -36,18 +36,21 @@ const ListingCard = ({
   const handleCancel = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
+
       if (disabled) {
         return;
       }
+
       onAction?.(actionId);
     },
-    [onAction, actionId, disabled]
+    [disabled, onAction, actionId]
   );
 
   const price = React.useMemo(() => {
     if (reservation) {
       return reservation.totalPrice;
     }
+
     return data.price;
   }, [reservation, data.price]);
 
@@ -59,30 +62,48 @@ const ListingCard = ({
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
 
-    return `${format(start, "PP")}- ${format(end, "PP")}`;
+    return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
   return (
     <div
+      onClick={() => router.push(`/listings/${data.id}`)}
       className="col-span-1 cursor-pointer group"
-      onClick={() => {
-        router.push(`/listings/${data.id}`);
-      }}
     >
       <div className="flex flex-col gap-2 w-full">
-        <div className="aspect-square w-full relative overflow-hidden rounded-lg ">
+        <div
+          className="
+            aspect-square 
+            w-full 
+            relative 
+            overflow-hidden 
+            rounded-xl
+          "
+        >
           <Image
             fill
-            alt="listings"
+            className="
+              object-cover 
+              h-full 
+              w-full 
+              group-hover:scale-110 
+              transition
+            "
             src={data.imageSrc}
-            className="object-cover h-full w-full group-hover:scale-110 transition"
+            alt="Listing"
           />
-          <div className="absolute top-3 right-3">
+          <div
+            className="
+            absolute
+            top-3
+            right-3
+          "
+          >
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
         <div className="font-semibold text-lg">
-          {location?.region}-{location?.label}
+          {location?.region}, {location?.label}
         </div>
         <div className="font-light text-neutral-500">
           {reservationDate || data.category}

@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
-interface SearchModalStore {
+type SearchModalStore = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-}
+};
 
 const useSearchModal = create<SearchModalStore>((set) => ({
   isOpen: false,

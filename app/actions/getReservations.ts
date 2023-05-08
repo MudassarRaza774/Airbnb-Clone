@@ -6,7 +6,7 @@ type IParams = {
   authorId?: string;
 };
 
-export const getReservations = async (params: IParams) => {
+const getReservations = async (params: IParams) => {
   try {
     const { listingId, userId, authorId } = params;
     const query: any = {};
@@ -47,3 +47,5 @@ export const getReservations = async (params: IParams) => {
     throw new Error(error);
   }
 };
+
+export default getReservations;

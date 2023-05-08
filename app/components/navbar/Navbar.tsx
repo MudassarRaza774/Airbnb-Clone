@@ -1,5 +1,5 @@
+import Categories from "./Categories";
 import Container from "../Container";
-import Catagories from "./Catagories";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
@@ -31,11 +31,11 @@ const Navbar = ({ currentUser }: NavbarProps) => {
           >
             <Logo />
             <Search />
-            <UserMenu currentUser = {currentUser} />
+            <UserMenu currentUser={currentUser} />
           </div>
         </Container>
       </div>
-      <Catagories />
+      <Categories />
     </div>
   );
 };

@@ -89,8 +89,6 @@ const RentModal = () => {
       return onNext();
     }
 
-    
-
     setIsLoading(true);
 
     axios
